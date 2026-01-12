@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Web app</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 To-Do Web app</h1>
+        <p class="subtitle">Simple Task Management System</p>
+
+        <!-- Section 1: Add New Task -->
+        <div class="section">
+            <h2>➕ Add New Task</h2>
+            <form action="/task" method="POST">
+                <input type="hidden" name="operation" value="add">
+                <input type="text" name="new_task" placeholder="Enter your task..." required>
+                <button type="submit" class="btn-add">Add Task</button>
+            </form>
+        </div>
+
+        <!-- Section 2: View All Tasks -->
+        <div class="section">
+            <h2>📋 Your Tasks</h2>
+            {% if tasks %}
+                <ul class="task-list">
+                    {% for task in tasks %}
+                        <li>{{ task }}</li>
+                    {% endfor %}
+                </ul>
+                <p class="task-count">Total Tasks: {{ tasks|length }}</p>
+            {% else %}
+                <p class="no-tasks">No tasks yet. Add your first task above! 🎯</p>
+            {% endif %}
+        </div>
+
+        <!-- Section 3: Update Task -->
+        <div class="section">
+            <h2>✏️ Update Task</h2>
+            <form action="/task" method="POST">
+                <input type="hidden" name="operation" value="update">
+                <select name="old_task" required>
+                    <option value="">-- Select task to update --</option>
+                    {% for task in tasks %}
+                        <option value="{{ task }}">{{ task }}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" name="updated_task" placeholder="Enter new task text..." required>
+                <button type="submit" class="btn-update">Update Task</button>
+            </form>
+        </div>
+
+        <!-- Section 4: Delete Single Task -->
+        <div class="section">
+            <h2>🗑️ Delete Task</h2>
+            <form action="/task" method="POST">
+                <input type="hidden" name="operation" value="delete">
+                <select name="task_to_delete" required>
+                    <option value="">-- Select task to delete --</option>
+                    {% for task in tasks %}
+                        <option value="{{ task }}">{{ task }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn-delete">Delete Task</button>
+            </form>
+        </div>
+
+        <!-- Section 5: Clear All Tasks -->
+        <div class="section">
+            <h2>🧹 Clear All Tasks</h2>
+            <form action="/task" method="POST" onsubmit="return confirm('Are you sure you want to delete all tasks?');">
+                <input type="hidden" name="operation" value="clear">
+                <button type="submit" class="btn-clear">Clear All Tasks</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
