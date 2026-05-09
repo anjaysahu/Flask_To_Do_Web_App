@@ -4,6 +4,14 @@
 
 A simple, session-based To-Do application built with **Flask**. The application allows users to manage personal tasks using core **CRUD** operations without requiring a database, leveraging Flask browser sessions for local data storage.
 
+## 🚀 Live Demo
+https://anjaysahu.pythonanywhere.com/
+
+## 📸 Screenshots
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ff93946e-9a02-4c22-8b21-a5a9086dc3e8" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dbe744a6-6434-443e-9ebc-45769603912a" />
+
+
 ## My Role & Technical Contributions (Python Development)
 
 As the Python Developer on this project, I was responsible for the core backend logic and system reliability:
